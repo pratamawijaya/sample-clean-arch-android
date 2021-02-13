@@ -18,7 +18,6 @@ import javax.inject.Singleton
 class ApplicationModule {
 
     @Provides
-    @Singleton
     fun provideOkHttpClient(headerInterceptor: HeaderInterceptor) = if (BuildConfig.DEBUG) {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -34,13 +33,11 @@ class ApplicationModule {
 
 
     @Provides
-    @Singleton
     fun provideHeaderInterceptor(): HeaderInterceptor {
         return HeaderInterceptor()
     }
 
     @Provides
-    @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl("https://newsapi.org/v2/")
         .addConverterFactory(GsonConverterFactory.create())
@@ -48,7 +45,6 @@ class ApplicationModule {
         .build()
 
     @Provides
-    @Singleton
     fun provideNewsApiServices(retrofit: Retrofit): NewsApiService =
         retrofit.create(NewsApiService::class.java)
 
