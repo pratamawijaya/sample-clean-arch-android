@@ -1,3 +1,3 @@
 package com.pratama.samplecleanarch.domain.entity
 
-data class Source(val id: Int, val name: String)
+data class Source(val id: String, val name: String)
